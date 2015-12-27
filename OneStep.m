@@ -21,19 +21,19 @@ function [ ] = OneStep( curLoop )
             subTract1=optSwarm.title(i,j)-swarm.title(i,j);
             subTract2=bestPar.title(1,j)-swarm.title(i,j);
             swarm.titleV(i,j)=w*swarm.titleV(i,j)+c1*rand()*subTract1+c2*rand()*subTract2;
-            if swarm.titleV>titleMaxV
-                swarm.titleV=titleMaxV;
-            elseif swarm.titleV<-titleMaxV
-                swarm.titleV=-titleMaxV;
+            if swarm.titleV(i,j)>titleMaxV
+                swarm.titleV(i,j)=titleMaxV;
+            elseif swarm.titleV(i,j)<-titleMaxV
+                swarm.titleV(i,j)=-titleMaxV;
             end
             % 攻角
             subTract1=optSwarm.attack(i,j)-swarm.attack(i,j);
             subTract2=bestPar.attack(1,j)-swarm.attack(i,j);
             swarm.attackV(i,j)=w*swarm.attackV(i,j)+c1*rand()*subTract1+c2*rand()*subTract2;
-            if swarm.attackV>attackMaxV
-                swarm.attackV=attackMaxV;
-            elseif swarm.attackV<-attackMaxV
-                swarm.attackV=-attackMaxV;
+            if swarm.attackV(i,j)>attackMaxV
+                swarm.attackV(i,j)=attackMaxV;
+            elseif swarm.attackV(i,j)<-attackMaxV
+                swarm.attackV(i,j)=-attackMaxV;
             end
             % 位置
             % 倾侧角
@@ -54,12 +54,12 @@ function [ ] = OneStep( curLoop )
         % 时间
         % 速度
         subTract1=optSwarm.time(i)-swarm.time(i);
-        subTract2=bestPar.time(1)-swarm.time(i);
+        subTract2=bestPar.time-swarm.time(i);
         swarm.timeV(i)=w*swarm.timeV(i)+c1*rand()*subTract1+c2*rand()*subTract2;
-        if swarm.timeV>timeMaxV
-            swarm.timeV=timeMaxV;
-        elseif swarm.timeV<-timeMaxV
-            swarm.timeV=-timeMaxV;
+        if swarm.timeV(i)>timeMaxV
+            swarm.timeV(i)=timeMaxV;
+        elseif swarm.timeV(i)<-timeMaxV
+            swarm.timeV(i)=-timeMaxV;
         end
         % 位置
         swarm.time(i)=swarm.time(i)+a*swarm.timeV(i);
@@ -87,7 +87,7 @@ function [ ] = OneStep( curLoop )
                 bestPar.title(j)=swarm.title(i,j);
                 bestPar.attack(j)=swarm.attack(i,j);
             end
-            bestPar.time(i)=swarm.time(i);
+            bestPar.time=swarm.time(i);
             end
         end
     end

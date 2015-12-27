@@ -15,5 +15,7 @@ function  InitVar()
     gVar.state(5,1)=-2.0/180*gCon.pi;
     gVar.state(6,1)=58/180*gCon.pi;
     
+    % 当前计算的是第几个粒子(也就是gVar.state表示的是第几个粒子的状态)
+    gVar.curParN=0;
 end
 

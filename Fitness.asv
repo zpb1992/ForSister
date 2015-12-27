@@ -12,7 +12,6 @@ function [ fitness ] = Fitness( title,attack,finalTime )
     
     global gCon;
     global gVar;
-    global swarm;
     
     finalLimit=FinalLimits();
     [dQ,q,n,Q]=PathLimits(attack);
@@ -23,13 +22,9 @@ function [ fitness ] = Fitness( title,attack,finalTime )
     % fitness 是nan的话 重新随机粒子 然后再次计算 一个迭代？
     if isnan(fitness)
         ReRandPar(gVar.curParN);
-        LGKT4([swarm.title(gVar.curParN,:);swarm.attack(gVar.curParN,:)],swarm.time(gVar.curParN));
-        if gVar.curParN==1
-            gVar.curParN=gCon.swarmN;
-        else
-            gVar.curParN=gVar.curParN-1;
-        end
-        fitness=Fitness(swarm.title(gVar.curParN,:),swarm.attack(gVar.curParN,:),swarm.time(gVar.curParN));
+        LGKT4([swarm.title(gVar.curParN,:);swarm.attack(gVar.curParN,:)],swarm.time);
+        curParN=curParN-1;
+        fitness=Fitness(swarm.title(i,:),swarm.attack(i,:),swarm.time(i));
     end
     
 end

@@ -23,11 +23,11 @@ function [ k ] = DiffFunc( title,attack,curState )
 	g=gCon.earthR*gCon.earthR*gCon.g0/(curState(1)*curState(1));
     
     k(1,1)=curState(4)*s5;
-	k(1,2)=curState(4)*c5*s6/(curState(1)*c3);
-	k(1,3)=curState(4)*c5*c6/curState(1);
-	k(1,4)=-D/gCon.flightWeight-g*s5+gCon.wE*gCon.wE*curState(1)*c3*(s5*c3-c5*s3*c6);
-	k(1,5)=(L*cos(title)/gCon.flightWeight+(curState(4)*curState(4)/curState(1)-g)*c5+2*gCon.wE*curState(4)*c3*s6+gCon.wE*gCon.wE*curState(1)*c3*(c5*c3+s5*s3*c6))/curState(4);
-	k(1,6)=(L*sin(title)/(gCon.flightWeight*c5)+curState(4)*curState(4)/curState(1)*c5*s6*tan(curState(3))-2*gCon.wE*curState(4)*(c3*tan(curState(5))*c6-s3)+gCon.wE*gCon.wE*curState(1)/c5*s3*c3*s6)/curState(4);
+	k(2,1)=curState(4)*c5*s6/(curState(1)*c3);
+	k(3,1)=curState(4)*c5*c6/curState(1);
+	k(4,1)=-D/gCon.flightWeight-g*s5+gCon.wE*gCon.wE*curState(1)*c3*(s5*c3-c5*s3*c6);
+	k(5,1)=(L*cos(title)/gCon.flightWeight+(curState(4)*curState(4)/curState(1)-g)*c5+2*gCon.wE*curState(4)*c3*s6+gCon.wE*gCon.wE*curState(1)*c3*(c5*c3+s5*s3*c6))/curState(4);
+	k(6,1)=(L*sin(title)/(gCon.flightWeight*c5)+curState(4)*curState(4)/curState(1)*c5*s6*tan(curState(3))-2*gCon.wE*curState(4)*(c3*tan(curState(5))*c6-s3)+gCon.wE*gCon.wE*curState(1)/c5*s3*c3*s6)/curState(4);
 
 end
 

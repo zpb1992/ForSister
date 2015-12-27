@@ -15,7 +15,7 @@ function [ track,dTrack ] = TrackLimits( attack )
         attackTemp=Interp1(attack,(i-1)/(gCon.stateD-1));
         [Cl,Cd]=ClCdFunc(attackTemp,gVar.state(4,i));
         L=den*gVar.state(4,i)*gVar.state(4,i)*gCon.flightS*Cl/2;
-        dTrack=dTrack+abs((gVar.state(4,i)*gVar.state(4,i)/gVar.state(1,i)-g)+L/gCon.flightWeight);    % gVar.state 为啥除了初始值都成0了
+        dTrack=dTrack+abs((gVar.state(4,i)*gVar.state(4,i)/gVar.state(1,i)-g)+L/gCon.flightWeight);    % gVar
     end
     track=track/(gCon.stateD-1);
     dTrack=dTrack/(gCon.stateD-1);

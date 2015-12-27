@@ -5,7 +5,6 @@ function InitSwarm()
     % swarm.attack
     % swarm.time
     global gCon;    %Usage
-    
     global swarm;
     global optSwarm;
     global bestPar;
@@ -13,24 +12,29 @@ function InitSwarm()
     swarm.title=rand(gCon.swarmN,gCon.parD)*(gCon.scopeCon(1,2)-gCon.scopeCon(1,1))+gCon.scopeCon(1,1);
     swarm.attack=rand(gCon.swarmN,gCon.parD)*(gCon.scopeCon(2,2)-gCon.scopeCon(2,1))+gCon.scopeCon(2,1);
     swarm.time=rand(gCon.swarmN,1)*(gCon.scopeTime(2)-gCon.scopeTime(1))+gCon.scopeTime(1);
-    swarm.titleV=(rand(gCon.swarmN,gCon.parD)-0.5)*(gCon.scopeCon(1,2)-gCon.scopeCon(1,1));
+    swarm.titleV=(rand(gCon.swarmN,gCon.parD)-0.5)*(gCon.scopeCon(1,2)-gCon.scopeCon(1,1));  % 速度为范围的一半
     swarm.attackV=(rand(gCon.swarmN,gCon.parD)-0.5)*(gCon.scopeCon(2,2)-gCon.scopeCon(2,1));
     swarm.timeV=(rand(gCon.swarmN,1)-0.5)*(gCon.scopeTime(2)-gCon.scopeTime(1));
     
     optSwarm=swarm;
+    for i=1:1:gCon.swarmN
+        LGKT4([optSwarm.title(i,:);optSwarm.attack(i,:)],optSwarm.time(i));
+    end
     optSwarm.fitness=zeros(gCon.swarmN,1);
-    bestPar.fitness=Fitness(swarm.title(1,:),swarm.attack(1,:),swarm.time(1));
+    bestPar.fitness=Fitness(swarm.title(1,:),swarm.attack(1,:),swarm.time(1)); % 先初始化一个 以便进行比较
     bestPar.title=optSwarm.title(1,:);
     bestPar.attack=optSwarm.attack(1,:);
     bestPar.time=optSwarm.time(1);
     for i=1:1:gCon.swarmN
+        LGKT4([optSwarm.title(i,:);optSwarm.attack(i,:)],optSwarm.time(i));
         optSwarm.fitness(i,1)=Fitness(swarm.title(i,:),swarm.attack(i,:),swarm.time(i));
         if optSwarm.fitness(i,1)>bestPar.fitness
+            bestPar.fitness=optSwarm.fitness(i,1);
             bestPar.title=optSwarm.title(i,:);
             bestPar.attack=optSwarm.attack(i,:);
             bestPar.time=optSwarm.time(i);
         end
     end
-    
+    optSwarm.fitness
 end
 

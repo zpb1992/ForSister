@@ -21,7 +21,7 @@ function InitConstant()
     gCon.constraintMax=[1000000     %热流密度
                        500000       %动压
                        6];          %过载
-    gCon.loopMax=500;   % 循环次数
+    gCon.loopMax=100;   % 循环次数
     
     gCon.flightWeight=907.2;    
     gCon.flightR=0.1;   %曲率半径

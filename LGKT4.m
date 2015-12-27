@@ -25,7 +25,10 @@ function [ ] = LGKT4( x,finalTime )
             gVar.state(j,i+1)=gVar.state(j,i)+finalTime*d*(k1(j)+2*k2(j)+2*k3(j)+k4(j))/6;
         end
     end
-    
-
+    if gVar.curParN<gCon.swarmN
+        gVar.curParN=gVar.curParN+1;
+    else
+        gVar.curParN=1;
+    end
 end
 

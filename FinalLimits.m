@@ -6,6 +6,6 @@ function [ result ] = FinalLimits()
     global gCon;
     
     finalState=gVar.state(:,gCon.stateD);
-    result=((finalState-gCon.finalState).*gCon.finalFlag)'*gCon.finalWeights;
+    result=(abs((finalState-gCon.finalState).*gCon.finalFlag))'*gCon.finalWeights;
 end
 
