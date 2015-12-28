@@ -14,10 +14,10 @@ function [ fitness ] = Fitness( title,attack,finalTime )
     global gVar;
     global swarm;
     
-    finalLimit=FinalLimits();
-    [dQ,q,n,Q]=PathLimits(attack);
-    [dTitle,dAttack]=ControlLimits(title,attack,finalTime);
-    [track,dTrack]=TrackLimits(attack);
+    finalLimit=FinalLimits()
+    [dQ,q,n,Q]=PathLimits(attack)
+    [dTitle,dAttack]=ControlLimits(title,attack,finalTime)
+    [track,dTrack]=TrackLimits(attack)
     
     fitness=-(finalLimit+[dQ/100000,q/100000,n,Q/100000000]*gCon.pathWeights+[dTitle,dAttack]*gCon.controlWeights+[track,dTrack]*gCon.trackWeights);
     % fitness 是nan的话 重新随机粒子 然后再次计算 一个迭代？

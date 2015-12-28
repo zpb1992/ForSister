@@ -6,6 +6,7 @@ function [ ] = OneStep( curLoop )
     global swarm;
     global optSwarm;
     global bestPar;
+    bestPar
     w=0.9-0.5*curLoop/gCon.loopMax;
     c1=2.0;
     c2=2.0;
